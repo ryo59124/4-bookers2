@@ -1,0 +1,45 @@
+<div class="container px-5 px-sm-0">
+  <div class="d-flex row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <%= image_tag @user.get_profile_image(100,100) %>
+      <table>
+        <tbody>
+          <tr>
+            <th>name</th><th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th><th><%= @user.name %></th>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex row">
+      <i class="fa-solid fa-user-gear"></i>
+      <font-awesome-icon icon="fa-solid fa-user-gear" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h2>New book</h2>
+      <%= form_with model: @book do |f| %>
+      <div>Title</div>
+        <%= f.text_field :title %>
+      <div>Opinion</div>
+        <%= f.text_area :body %>
+      <%= f.submit 'Create Book' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+<!---% @books.each do |book| %>
+<div>
+  <p>投稿ユーザー画像：<!%= image_tag book.user.get_profile_image(100,100) %></p>
+  <p>本のタイトル：<!%= book.title %></p>
+  <p>感想：<!%= book.body %></p>
+  <p>ユーザーネーム：<!%= book.user.name %></p>
+</div>
+<!% end %>
