@@ -1,37 +1,10 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
-
-<div class="container px-5 px-sm-0">
-  <div class="d-flex row">
-    <div class="col-md-3">
-      <h2>User info</h2>
-      <%= image_tag @user.get_profile_image(100,100) %>
-      <table>
-        <tbody>
-          <tr>
-            <th>name</th><th><%= @user.name %></th>
-          </tr>
-          <tr>
-            <th>introduction</th><th><%= @user.name %></th>
-          </tr>
-        </tbody>
-      </table>
-      <div class="d-flex row">
-      <i class="fa-solid fa-user-gear"></i>
-      <font-awesome-icon icon="fa-solid fa-user-gear" />
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <h2>New book</h2>
-      <%= form_with model: @book do |f| %>
-      <div>Title</div>
-        <%= f.text_field :title %>
-      <div>Opinion</div>
-        <%= f.text_area :body %>
-      <%= f.submit 'Create Book' %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<h2>User info</h2>
+<%= form_with model: @user do |f| %>
+  <label for="inputName">Name</label>
+  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+  <label for="inputImage">Image</label>
+  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>  
+  <label for="inputName">Introduction</label>
+  <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"自己紹介文"%>
+  <%= f.submit "Update User" %>
+<% end %>
