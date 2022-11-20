@@ -1,25 +1,15 @@
-  <p>Title：<%= @book.title %></p>
-  <p>Body：<%= @book.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
-  <p>投稿日：<%= @.created_at.strftime('%Y/%m/%d') %></p>
-   <% if @book.user == current_user %>
-    <%= link_to "destroy", book_path(@book), method: :delete %>
-  <% end %>
-</div>
-
-<div class="container px-5 px-sm-0">
+div class="container px-5 px-sm-0">
   <div class="d-flex row">
     <div class="col-md-3">
       <h2>User info</h2>
-      <%= image_tag @user.get_profile_image(100,100) %>
+      <%= image_tag @book.user.get_profile_image(100,100) %>
       <table>
         <tbody>
           <tr>
-            <th>name</th><th><%= @user.name %></th>
+            <th>name</th><th><%= @book.user.name %></th>
           </tr>
           <tr>
-            <th>introduction</th><th><%= @user.name %></th>
+            <th>introduction</th><th><%= @book.user.introduction %></th>
           </tr>
         </tbody>
       </table>
@@ -41,3 +31,21 @@
     </div>
   </div>
 </div>
+
+<div class="col-md-8 offset-md-1">
+  <h2>Book detail</h2>
+<table>
+  <tbody>
+    <tr>
+      <td><%= image_tag @book.user.get_profile_image(100,100) %></td>
+      <td><p><%= @book.user.name %></p></td>
+      <td><span><%= @book.title %></span></td>
+      <td><span><%= @book.body %></span></td>
+      <td> 
+        <% if @book.user == current_user %>
+          <%= link_to "Edit", edit_book_path(@book.id) %>
+          <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+        <% end %>
+    </tr>
+  </tbody>
+</table>

@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(version: 2022_11_17_063300) do
   end
 
   create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -52,9 +55,10 @@ ActiveRecord::Schema.define(version: 2022_11_17_063300) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.string "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
