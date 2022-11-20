@@ -1,6 +1,3 @@
-ログイン後ホーム的な
-全ての本一覧
-
 <div class="container px-5 px-sm-0">
   <div class="d-flex row">
     <div class="col-md-3">
@@ -17,9 +14,13 @@
         </tbody>
       </table>
       <div class="d-flex row">
-      <i class="fa-solid fa-user-gear"></i>
-      <font-awesome-icon icon="fa-solid fa-user-gear" />
+      <div class="col-md-3">
+      <div class="btn btn-outline-secondary text-center text-black rounded" type="button">
+        <i class="fa-solid fa-user-gear"></i><%= link_to " ", edit_user_path(@book.user.id), class: 'nav-link text-black' %>
       </div>
+      </div>
+      </div>
+      
     </div>
   </div>
 <div class="container">
@@ -50,7 +51,7 @@
 
 <div class="col-md-8 offset-md-1">
   <h2>Books</h2>
-  <table>
+  <table class="table table-hover table-inverse">
     <thead>
       <tr>
         <th></th>
@@ -62,7 +63,8 @@
     <% @books.each do |book| %>
     <tbody>
       <tr>
-      <td><%= image_tag @book.user.get_profile_image(100,100) %></td>
+      <td><%= image_tag book.user.get_profile_image(100,100) %><br>
+      <%= book.user.name %></td>
       <td><span><%= book.title %></span></td>
       <td><span><%= book.body %></span></td>
       <td><%= link_to "Show", book_path(book.id) %></td>

@@ -1,4 +1,8 @@
-div class="container px-5 px-sm-0">
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<div class="container px-5 px-sm-0">
   <div class="d-flex row">
     <div class="col-md-3">
       <h2>User info</h2>
@@ -14,8 +18,12 @@ div class="container px-5 px-sm-0">
         </tbody>
       </table>
       <div class="d-flex row">
-      <i class="fa-solid fa-user-gear"></i>
+      <div class="col-md-3">
+      <div class="btn btn-outline-secondary text-center text-black rounded" type="button">
+        <i class="fa-solid fa-user-gear"></i><%= link_to " ", edit_user_path(@book.user.id), class: 'nav-link text-black' %>
       </div>
+      </div>
+     </div>
     </div>
   </div>
   <div class="row">
@@ -34,11 +42,11 @@ div class="container px-5 px-sm-0">
 
 <div class="col-md-8 offset-md-1">
   <h2>Book detail</h2>
-<table>
+<table class="table table-hover table-inverse">
   <tbody>
     <tr>
       <td><%= image_tag @book.user.get_profile_image(100,100) %></td>
-      <td><p><%= @book.user.name %></p></td>
+      <td><p><%= @book.user.name %></p></td> 
       <td><span><%= @book.title %></span></td>
       <td><span><%= @book.body %></span></td>
       <td> 

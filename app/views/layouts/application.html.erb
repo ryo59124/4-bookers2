@@ -26,10 +26,10 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to 'Home', user_path(current_user.id), class: 'nav-link text-white' %>
+              <i class="fa-duotone fa-house-chimney"></i><%= link_to 'Home', user_path(current_user.id), class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Users', users_path, class: 'nav-link text-white' %>
+              <i class="fa-solid fa-users"></i><%= link_to 'Users', users_path, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
               <%= link_to 'Books', books_path, class: 'nav-link text-white' %>
@@ -59,6 +59,9 @@
     
     
     <main class="mb-auto">
+    <% flash.each do |message_type, message| %>
+　　  <div class="notice notice-<%= message_type %>"><%= message %></div>
+    <% end %>
     <%= yield %>
     </main>
     

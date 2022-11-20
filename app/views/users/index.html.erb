@@ -13,11 +13,14 @@
           </tr>
         </tbody>
       </table>
-      <div class="d-flex row">
-      <i class="fa-solid fa-user-gear"></i>
-      <font-awesome-icon icon="fa-solid fa-user-gear" />
+     <div class="d-flex row">
+     <div class="col-md-3">
+      <div class="btn btn-outline-secondary text-center text-black rounded" type="button">
+        <i class="fa-solid fa-user-gear"></i><%= link_to " ", edit_user_path(@user.id), class: 'nav-link text-black' %>
       </div>
-    </div>
+      </div>
+     </div>
+     </div>
   </div>
   <div class="row">
     <div class="col-md-3">
@@ -31,4 +34,27 @@
       <% end %>
     </div>
   </div>
+</div>
+<div class="col-md-8 offset-md-1">
+  <h2>Users</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>image</th>
+        <th>name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @users.each do |user| %>
+    <tbody>
+      <tr>
+      <td><%= image_tag user.get_profile_image(100,100) %></td>
+      <td><%= user.name %></td>
+      <td><%= link_to "Show", user_path(user.id) %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+
+
 </div>
