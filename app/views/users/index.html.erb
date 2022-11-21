@@ -1,9 +1,11 @@
 <div class="container px-5 px-sm-0">
+
   <div class="d-flex row">
+
     <div class="col-md-3">
       <h2>User info</h2>
       <%= image_tag @user.get_profile_image(100,100) %>
-      <table>
+      <table class="table">
         <tbody>
           <tr>
             <th>name</th><th><%= @user.name %></th>
@@ -13,48 +15,45 @@
           </tr>
         </tbody>
       </table>
-     <div class="d-flex row">
-     <div class="col-md-3">
-      <div class="btn btn-outline-secondary text-center text-black rounded" type="button">
-        <i class="fa-solid fa-user-gear"></i><%= link_to " ", edit_user_path(@user.id), class: 'nav-link text-black' %>
+
+      <div class="btn btn-outline-secondary rounded btn-lg btn-block my-3" type="button">
+        <%= link_to edit_user_path(@user.id) do %>
+        <i class="fas fa-user-cog"></i>
+        <% end %>
       </div>
-      </div>
-     </div>
-     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
+
       <h2>New book</h2>
       <%= form_with model: @book do |f| %>
       <div>Title</div>
         <%= f.text_field :title %>
       <div>Opinion</div>
         <%= f.text_area :body %>
-      <%= f.submit 'Create Book' %>
+        <%= f.submit 'Create Book', class:"btn btn-lg btn-block btn-success mt-2" %>
       <% end %>
     </div>
-  </div>
-</div>
-<div class="col-md-8 offset-md-1">
-  <h2>Users</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>image</th>
-        <th>name</th>
-        <th></th>
-      </tr>
-    </thead>
-    <% @users.each do |user| %>
-    <tbody>
-      <tr>
-      <td><%= image_tag user.get_profile_image(100,100) %></td>
-      <td><%= user.name %></td>
-      <td><%= link_to "Show", user_path(user.id) %></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
 
+    <div class="col-md-8 offset-md-1">
+      <h2>Users</h2>
+      <table class="table">
+      <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @users.each do |user| %>
+      <tbody>
+      <tr>
+        <td><%= image_tag user.get_profile_image(100,100) %></td>
+        <td><%= user.name %></td>
+        <td><%= link_to "Show", user_path(user.id) %></td>
+        </tr>
+      </tbody>
+      <% end %>
+     </table>
+    </div>
+
+  </div>
 
 </div>

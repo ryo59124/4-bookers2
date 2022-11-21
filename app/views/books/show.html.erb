@@ -3,11 +3,13 @@
 </div>
 
 <div class="container px-5 px-sm-0">
+
   <div class="d-flex row">
+
     <div class="col-md-3">
       <h2>User info</h2>
       <%= image_tag @book.user.get_profile_image(100,100) %>
-      <table>
+      <table class="table">
         <tbody>
           <tr>
             <th>name</th><th><%= @book.user.name %></th>
@@ -17,43 +19,49 @@
           </tr>
         </tbody>
       </table>
-      <div class="d-flex row">
-      <div class="col-md-3">
-      <div class="btn btn-outline-secondary text-center text-black rounded" type="button">
-        <i class="fa-solid fa-user-gear"></i><%= link_to " ", edit_user_path(@book.user.id), class: 'nav-link text-black' %>
+
+       <div class="btn btn-outline-secondary rounded btn-lg btn-block my-3" type="button">
+        <%= link_to edit_user_path(@user.id) do %>
+        <i class="fas fa-user-cog"></i>
+        <% end %>
       </div>
-      </div>
-     </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
+
       <h2>New book</h2>
       <%= form_with model: @book do |f| %>
       <div>Title</div>
-        <%= f.text_field :title %>
+        <span class="border border-light"><%= f.text_field :title %></span>
       <div>Opinion</div>
         <%= f.text_area :body %>
-      <%= f.submit 'Create Book' %>
+        <%= f.submit 'Create Book', class:"btn btn-lg btn-block btn-success mt-2" %>
       <% end %>
     </div>
-  </div>
-</div>
 
-<div class="col-md-8 offset-md-1">
-  <h2>Book detail</h2>
-<table class="table table-hover table-inverse">
-  <tbody>
-    <tr>
-      <td><%= image_tag @book.user.get_profile_image(100,100) %></td>
-      <td><p><%= @book.user.name %></p></td> 
-      <td><span><%= @book.title %></span></td>
-      <td><span><%= @book.body %></span></td>
-      <td> 
-        <% if @book.user == current_user %>
-          <%= link_to "Edit", edit_book_path(@book.id) %>
-          <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
-        <% end %>
-    </tr>
-  </tbody>
-</table>
+    <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+            <td><%= image_tag @book.user.get_profile_image(100,100) %><br>
+            <p><%= @book.user.name %></p></td>
+            <td><span><%= @book.title %></span></td>
+            <td><span><%= @book.body %></span></td>
+            <td>
+            <% if @book.user == current_user %>
+              <div class="mx-auto text-center mb-3 bg-success rounded" type="button">
+                <%= link_to "Edit", edit_book_path(@book.id), class: 'nav-link text-white'%>
+              </div>
+            </td>
+            <td>
+              <div class="mx-auto text-center mb-3 bg-danger rounded" type="button">
+                <%= link_to "Destroy", book_path(@book.id), class: 'nav-link text-white', method: :delete, "data-confirm" => "Are you sure?"%>
+              </div>
+            <% end %>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+  </div>
+
+</div>
