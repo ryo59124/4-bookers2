@@ -21,16 +21,19 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new
     @book.user = current_user
+    @user = current_user
   end
 
   def show
     @book = Book.find(params[:id])
-    @book.user = current_user
+    @user = current_user
+    @bookuser = User.find(params[:id])
   end
 
   def edit
     @book = Book.find(params[:id])
     @book.user = current_user
+    @user = current_user
   end
 
   def update
@@ -56,11 +59,9 @@ class BooksController < ApplicationController
   end
 
   def is_matching_login_user
-    user_id = params[:id].to_i
-    login_user_id = current_user.id
-    if(user_id = login_user_id)
-      redirect_to books_path
-    end
+    @book = Book.find(params[:id])
+    @user = @book.user
+    redirect_to(books_path) unless @user == current_user
   end
 
 end

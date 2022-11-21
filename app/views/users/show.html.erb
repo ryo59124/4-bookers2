@@ -7,21 +7,21 @@
   <div class="d-flex row">
     <div class="col-md-3">
       <h2>User info</h2>
-      <%= image_tag @user.get_profile_image(100,100) %>
+      <%= image_tag @bookuser.get_profile_image(100,100) %>
       <table class="table">
         <tbody>
           <tr>
-            <th>name</th><th><%= @user.name %></th>
+            <th>name</th><th><%= @bookuser.name %></th>
           </tr>
           <tr>
-            <th>introduction</th><th><%= @user.introduction %></th>
+            <th>introduction</th><th><%= @bookuser.introduction %></th>
           </tr>
         </tbody>
       </table>
       
        <div class="btn btn-outline-secondary rounded btn-lg btn-block my-3" type="button">
-        <%= link_to edit_user_path(@user.id) do %>
-        <i class="fas fa-user-cog"></i>
+        <%= link_to edit_user_path(@bookuser) do %>
+        <i class="fas fa-user-cog" style="color: gray;"></i>
         <% end %>
       </div>
 
@@ -30,8 +30,8 @@
       <div>Title</div>
         <%= f.text_field :title %>
       <div>Opinion</div>
-        <%= f.text_area :body %>
-        <%= f.submit 'Create Book', class:"btn btn-lg btn-block btn-success mt-2" %>
+        <%= f.text_area :body %><br>
+        <%= f.submit 'Create Book', class:"btn btn-success mt-2" %>
       <% end %>
     </div>
 
@@ -49,7 +49,9 @@
         <% @books.each do |book| %>
         <tbody>
           <tr>
-            <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+            <td><span><%= link_to user_path(book.id) do %>
+                      <%= image_tag @bookuser.get_profile_image(100,100) %>
+                      <% end %></span></td>
             <td><span><%= link_to book_path(book.id) do %> <%= book.title %> <% end %></span></td>
             <td><span><%= book.body %></span></td>
           </tr>

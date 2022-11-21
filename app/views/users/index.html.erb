@@ -18,7 +18,7 @@
 
       <div class="btn btn-outline-secondary rounded btn-lg btn-block my-3" type="button">
         <%= link_to edit_user_path(@user.id) do %>
-        <i class="fas fa-user-cog"></i>
+        <i class="fas fa-user-cog" style="color: gray;"></i>
         <% end %>
       </div>
 
@@ -27,8 +27,8 @@
       <div>Title</div>
         <%= f.text_field :title %>
       <div>Opinion</div>
-        <%= f.text_area :body %>
-        <%= f.submit 'Create Book', class:"btn btn-lg btn-block btn-success mt-2" %>
+        <%= f.text_area :body %><br>
+        <%= f.submit 'Create Book', class:"btn btn-success mt-2" %>
       <% end %>
     </div>
 

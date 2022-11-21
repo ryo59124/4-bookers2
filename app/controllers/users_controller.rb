@@ -9,8 +9,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @books = @user.books.all
+    @user = current_user
+    @bookuser = User.find(params[:id])
+    @books = @bookuser.books.all
     @book = Book.new
   end
 
@@ -37,8 +38,9 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user_id = params[:id].to_i
     login_user_id = current_user.id
-    if(user_id = login_user_id)
-      redirect_to books_path
+    if(user_id == login_user_id)
+    else
+      redirect_to user_path(current_user)
     end
   end
 
