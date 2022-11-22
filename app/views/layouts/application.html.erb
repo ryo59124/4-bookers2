@@ -75,9 +75,7 @@
     
     
     <main class="mb-auto">
-    <% flash.each do |message_type, message| %>
-　　  <div class="notice notice-<%= message_type %>"><%= message %></div>
-    <% end %>
+    
     <%= yield %>
     </main>
     
